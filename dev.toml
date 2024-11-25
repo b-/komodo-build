@@ -37,3 +37,24 @@ dockerfile_path = "binaries.Dockerfile"
 image_registry.domain = "git.komo.do"
 image_registry.account = "mbecker20"
 image_registry.organization = "komodo"
+
+##
+
+[[build]]
+name = "komodo-core-dev"
+tags = ["dev", "core"]
+[build.config]
+builder = "x86_64-builder"
+version = "1.16.12"
+auto_increment_version = false
+image_name = "core"
+image_tag = "dev"
+links = [
+  "https://git.komo.do/komodo/-/packages/container/core"
+]
+repo = "mbecker20/komodo"
+branch = "1.16.12"
+dockerfile_path = "bin/core/multi-arch.Dockerfile"
+image_registry.domain = "git.komo.do"
+image_registry.account = "mbecker20"
+image_registry.organization = "komodo"
