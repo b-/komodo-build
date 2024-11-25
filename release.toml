@@ -1,1 +1,161 @@
-## Add resources to get started
+[[build]]
+name = "komodo-core-aarch64"
+tags = ["core", "aarch64", "release"]
+[build.config]
+builder = "aarch64_builder"
+version = "1.16.11"
+auto_increment_version = false
+image_name = "komodo"
+image_tag = "aarch64"
+repo = "mbecker20/komodo"
+dockerfile_path = "bin/core/debian.Dockerfile"
+image_registry.domain = "ghcr.io"
+image_registry.account = "mbecker20"
+
+##
+
+[[build]]
+name = "komodo-core-x86"
+tags = ["core", "x86", "release"]
+[build.config]
+builder = "x86_builder"
+version = "1.16.11"
+auto_increment_version = false
+image_name = "komodo"
+repo = "mbecker20/komodo"
+dockerfile_path = "bin/core/debian.Dockerfile"
+image_registry.domain = "ghcr.io"
+image_registry.account = "mbecker20"
+
+##
+
+[[build]]
+name = "komodo-periphery-aarch64"
+tags = ["periphery", "aarch64", "release"]
+[build.config]
+builder = "aarch64_builder"
+version = "1.16.11"
+auto_increment_version = false
+image_name = "periphery"
+image_tag = "aarch64"
+repo = "mbecker20/komodo"
+dockerfile_path = "bin/periphery/debian.Dockerfile"
+image_registry.domain = "ghcr.io"
+image_registry.account = "mbecker20"
+
+##
+
+[[build]]
+name = "komodo-periphery-x86"
+tags = ["periphery", "x86", "release"]
+[build.config]
+builder = "x86_builder"
+version = "1.16.11"
+auto_increment_version = false
+image_name = "periphery"
+repo = "mbecker20/komodo"
+dockerfile_path = "bin/periphery/debian.Dockerfile"
+image_registry.domain = "ghcr.io"
+image_registry.account = "mbecker20"
+
+##
+
+[[repo]]
+name = "periphery-bin-aarch64"
+tags = ["periphery", "aarch64", "release"]
+[repo.config]
+builder = "aarch64_builder"
+repo = "mbecker20/komodo"
+on_pull.path = "."
+on_pull.command = """
+/root/.cargo/bin/cargo clean
+
+/root/.cargo/bin/cargo build -p komodo_periphery --release
+
+curl --user mbecker20:[[KOMODO_GIT_TOKEN]] --upload-file ./target/release/periphery https://git.komo.do/api/packages/mbecker20/generic/periphery/[[KOMODO_VERSION]]-release/periphery-aarch64
+"""
+
+##
+
+[[repo]]
+name = "periphery-bin-x86"
+tags = ["periphery", "x86", "release"]
+[repo.config]
+builder = "x86_builder"
+repo = "mbecker20/komodo"
+on_pull.path = "."
+on_pull.command = """
+/root/.cargo/bin/cargo clean
+
+/root/.cargo/bin/cargo build -p komodo_periphery --release
+
+curl --user mbecker20:[[KOMODO_GIT_TOKEN]] --upload-file ./target/release/periphery https://git.komo.do/api/packages/mbecker20/generic/periphery/[[KOMODO_VERSION]]-release/periphery
+"""
+
+##
+
+[[procedure]]
+name = "build_release"
+tags = ["release"]
+
+[[procedure.config.stage]]
+name = "Build Komodo Release"
+enabled = true
+executions = [
+  { execution.type = "BatchBuildRepo", execution.params.pattern = "\^periphery-bin-(?:x86|aarch64)$\", enabled = true },
+  { execution.type = "BatchRunBuild", execution.params.pattern = "\^komodo-(?:core|periphery)-(?:x86|aarch64)$\", enabled = true }
+]
+
+##
+
+[[action]]
+name = "publish_release"
+tags = ["release"]
+[action.config]
+file_contents = """
+const KOMODO_VERSION = "1.16.11";
+const APPS = ["core", "periphery"];
+const ARCHS = ["x86", "aarch64"];
+
+const last_version = (
+  await komodo.read("GetVariable", { name: "KOMODO_VERSION" })
+).value;
+
+// Update Variable
+await komodo.write("UpdateVariableValue", {
+  name: "KOMODO_VERSION",
+  value: KOMODO_VERSION,
+});
+console.log("Updated KOMODO_VERSION to " + KOMODO_VERSION);
+
+// Update Builds
+for (const app of APPS) {
+  for (const arch of ARCHS) {
+    const name = `komodo-${app}-${arch}`;
+    await komodo.write("UpdateBuild", {
+      id: name,
+      config: {
+        version: KOMODO_VERSION as any,
+      },
+    });
+    console.log(`Updated Build ${name} to ${KOMODO_VERSION}`);
+  }
+}
+
+// Update 'release' Sync references
+const sync = await komodo.read("GetResourceSync", { sync: "release" });
+const file = sync.info?.remote_contents?.find(
+  (file) => file.path === "release.toml",
+);
+await komodo.write("WriteSyncFileContents", {
+  sync: "release",
+  resource_path: file.resource_path,
+  file_path: file.path,
+  contents: file.contents.replaceAll(last_version, KOMODO_VERSION),
+});
+console.log(`Updated Sync references to ${KOMODO_VERSION}`);
+
+// Start the procedure run.
+await komodo.execute("RunProcedure", { procedure: "build_release" });
+console.log("Publish Procedure triggered ✅");
+"""
