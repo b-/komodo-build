@@ -1,1 +1,38 @@
-## Add resources to get started
+[[build]]
+name = "komodo-binaries-dev-aarch64"
+tags = ["dev", "binaries", "aarch64"]
+[build.config]
+builder = "x86_64-builder"
+auto_increment_version = false
+image_name = "binaries"
+image_tag = "dev-x86_64"
+links = [
+  "https://git.komo.do/komodo/-/packages/container/binaries"
+]
+repo = "mbecker20/komodo"
+branch = "1.16.12"
+dockerfile_path = "binaries.Dockerfile"
+image_registry.domain = "git.komo.do"
+image_registry.account = "mbecker20"
+image_registry.organization = "komodo"
+
+##
+
+[[build]]
+name = "komodo-binaries-dev-x86_64"
+tags = ["dev", "binaries", "x86_64"]
+[build.config]
+builder = "x86_64-builder"
+version = "1.16.12"
+auto_increment_version = false
+image_name = "binaries"
+image_tag = "dev-x86_64"
+links = [
+  "https://git.komo.do/komodo/-/packages/container/binaries"
+]
+repo = "mbecker20/komodo"
+branch = "1.16.12"
+dockerfile_path = "binaries.Dockerfile"
+image_registry.domain = "git.komo.do"
+image_registry.account = "mbecker20"
+image_registry.organization = "komodo"
