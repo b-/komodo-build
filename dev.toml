@@ -2,11 +2,11 @@
 name = "komodo-binaries-dev-aarch64"
 tags = ["dev", "binaries", "aarch64"]
 [build.config]
-builder = "x86_64-builder"
+builder = "aarch64-builder"
 version = "1.16.12"
 auto_increment_version = false
 image_name = "binaries"
-image_tag = "dev-x86_64"
+image_tag = "dev-aarch64"
 links = [
   "https://git.komo.do/komodo/-/packages/container/binaries"
 ]
