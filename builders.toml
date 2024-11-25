@@ -1,5 +1,5 @@
 [[builder]]
-name = "aarch64_builder"
+name = "aarch64-builder"
 tags = ["builder"]
 [builder.config]
 type = "Aws"
@@ -17,7 +17,7 @@ curl -sSL https://raw.githubusercontent.com/mbecker20/komodo/main/scripts/setup-
 ##
 
 [[builder]]
-name = "x86_builder"
+name = "x86_64-builder"
 tags = ["builder"]
 [builder.config]
 type = "Aws"
