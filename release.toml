@@ -159,3 +159,16 @@ console.log(`Updated Sync references to ${KOMODO_VERSION}`);
 await komodo.execute("RunProcedure", { procedure: "build_release" });
 console.log("Publish Procedure triggered ✅");
 """
+
+##
+
+[[resource_sync]]
+name = "release"
+tags = ["release"]
+[resource_sync.config]
+git_provider = "git.komo.do"
+repo = "komodo/build"
+git_account = "mbecker20"
+resource_path = ["release.toml"]
+managed = true
+match_tags = ["release"]
