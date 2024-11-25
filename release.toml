@@ -102,8 +102,8 @@ tags = ["release"]
 name = "Build Komodo Release"
 enabled = true
 executions = [
-  { execution.type = "BatchBuildRepo", execution.params.pattern = "\^periphery-bin-(?:x86|aarch64)$\", enabled = true },
-  { execution.type = "BatchRunBuild", execution.params.pattern = "\^komodo-(?:core|periphery)-(?:x86|aarch64)$\", enabled = true }
+  { execution.type = "BatchBuildRepo", execution.params.pattern = "\\^periphery-bin-(?:x86|aarch64)$\\", enabled = true },
+  { execution.type = "BatchRunBuild", execution.params.pattern = "\\^komodo-(?:core|periphery)-(?:x86|aarch64)$\\", enabled = true }
 ]
 
 ##
