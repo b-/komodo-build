@@ -1,6 +1,6 @@
 [[build]]
 name = "komodo-core-aarch64"
-tags = ["core", "aarch64", "release"]
+tags = ["release", "core", "aarch64"]
 [build.config]
 builder = "aarch64_builder"
 version = "1.16.11"
@@ -16,7 +16,7 @@ image_registry.account = "mbecker20"
 
 [[build]]
 name = "komodo-core-x86"
-tags = ["core", "x86", "release"]
+tags = ["release", "core", "x86"]
 [build.config]
 builder = "x86_builder"
 version = "1.16.11"
@@ -31,7 +31,7 @@ image_registry.account = "mbecker20"
 
 [[build]]
 name = "komodo-periphery-aarch64"
-tags = ["periphery", "aarch64", "release"]
+tags = ["release", "periphery", "aarch64"]
 [build.config]
 builder = "aarch64_builder"
 version = "1.16.11"
@@ -47,7 +47,7 @@ image_registry.account = "mbecker20"
 
 [[build]]
 name = "komodo-periphery-x86"
-tags = ["periphery", "x86", "release"]
+tags = ["release", "periphery", "x86"]
 [build.config]
 builder = "x86_builder"
 version = "1.16.11"
@@ -62,7 +62,7 @@ image_registry.account = "mbecker20"
 
 [[repo]]
 name = "periphery-bin-aarch64"
-tags = ["periphery", "aarch64", "release"]
+tags = ["release", "periphery", "aarch64"]
 [repo.config]
 builder = "aarch64_builder"
 repo = "mbecker20/komodo"
@@ -79,7 +79,7 @@ curl --user mbecker20:[[KOMODO_GIT_TOKEN]] --upload-file ./target/release/periph
 
 [[repo]]
 name = "periphery-bin-x86"
-tags = ["periphery", "x86", "release"]
+tags = ["release", "periphery", "x86"]
 [repo.config]
 builder = "x86_builder"
 repo = "mbecker20/komodo"
