@@ -18,7 +18,7 @@ image_registry.account = "mbecker20"
 name = "komodo-core-x86"
 tags = ["release", "core", "x86"]
 [build.config]
-builder = "x86_builder"
+builder = "x86_64-builder"
 version = "1.16.11"
 auto_increment_version = false
 image_name = "komodo"
@@ -49,7 +49,7 @@ image_registry.account = "mbecker20"
 name = "komodo-periphery-x86"
 tags = ["release", "periphery", "x86"]
 [build.config]
-builder = "x86_builder"
+builder = "x86_64-builder"
 version = "1.16.11"
 auto_increment_version = false
 image_name = "periphery"
@@ -81,7 +81,7 @@ curl --user mbecker20:[[KOMODO_GIT_TOKEN]] --upload-file ./target/release/periph
 name = "periphery-bin-x86"
 tags = ["release", "periphery", "x86"]
 [repo.config]
-builder = "x86_builder"
+builder = "x86_64-builder"
 repo = "mbecker20/komodo"
 on_pull.path = "."
 on_pull.command = """
