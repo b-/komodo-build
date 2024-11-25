@@ -30,3 +30,16 @@ params.security_group_ids = ["sg-0babe545ecfb49c9b"]
 params.user_data = """
 #!/bin/bash
 curl -sSL https://raw.githubusercontent.com/mbecker20/komodo/main/scripts/setup-periphery.py | HOME=/root python3"""
+
+##
+
+[[resource_sync]]
+name = "builders"
+tags = ["builder"]
+[resource_sync.config]
+git_provider = "git.komo.do"
+repo = "komodo/build"
+git_account = "mbecker20"
+resource_path = ["builders.toml"]
+managed = true
+match_tags = ["builder"]
