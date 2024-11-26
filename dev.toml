@@ -146,15 +146,18 @@ tags = ["dev"]
 name = "Build Binaries + Frontend"
 enabled = true
 executions = [
-  { execution.type = "BatchRunBuild", execution.params.pattern = "komodo-binaries-dev-*, komodo-frontend-dev", enabled = true }
+  { execution.type = "RunBuild", execution.params.build = "komodo-binaries-dev-x86_64", enabled = true },
+  { execution.type = "RunBuild", execution.params.build = "komodo-binaries-dev-aarch64", enabled = true },
+  { execution.type = "RunBuild", execution.params.build = "komodo-frontend-dev", enabled = true },
 ]
 
 [[procedure.config.stage]]
-name = "Build Multi Arch"
+name = "Build Multi Arch + Upload Binaries"
 enabled = true
 executions = [
   { execution.type = "RunBuild", execution.params.build = "komodo-core-dev", enabled = true },
-  { execution.type = "RunBuild", execution.params.build = "komodo-periphery-dev", enabled = true }
+  { execution.type = "RunBuild", execution.params.build = "komodo-periphery-dev", enabled = true },
+  { execution.type = "BuildRepo", execution.params.build = "upload-binaries-dev", enabled = true },
 ]
 
 ##
