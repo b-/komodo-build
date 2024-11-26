@@ -104,6 +104,19 @@ build_args = """
 
 ##
 
+[[procedure]]
+name = "build-dev"
+tags = ["dev"]
+
+[[procedure.config.stage]]
+name = "Build Binaries"
+enabled = true
+executions = [
+  { execution.type = "BatchRunBuild", execution.params.pattern = """, komodo-binaries-dev-*, """, enabled = true }
+]
+
+##
+
 [[resource_sync]]
 name = "dev"
 tags = ["dev"]
