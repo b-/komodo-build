@@ -88,7 +88,7 @@ extra_args = [
 ]
 build_args = """
   REGISTRY_AND_NAMESPACE = git.komo.do/komodo
-  BINARIES_TAG = latest-dev
+  IMAGE_TAG = latest-dev
 """
 
 ##
@@ -120,7 +120,7 @@ extra_args = [
 ]
 build_args = """
   REGISTRY_AND_NAMESPACE = git.komo.do/komodo
-  BINARIES_TAG = latest-dev
+  IMAGE_TAG = latest-dev
 """
 
 ##
