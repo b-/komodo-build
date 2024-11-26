@@ -140,7 +140,8 @@ executions = [
 name = "Build Multi Arch"
 enabled = true
 executions = [
-  { execution.type = "BatchRunBuild", execution.params.pattern = "komodo-*-dev", enabled = true }
+  { execution.type = "RunBuild", execution.params.build = "komodo-core-dev", enabled = true },
+  { execution.type = "RunBuild", execution.params.build = "komodo-periphery-dev", enabled = true }
 ]
 
 ##
