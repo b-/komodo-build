@@ -12,7 +12,7 @@ links = [
 ]
 repo = "mbecker20/komodo"
 branch = "1.16.12"
-dockerfile_path = "binaries.Dockerfile"
+dockerfile_path = "bin/binaries.Dockerfile"
 image_registry.domain = "git.komo.do"
 image_registry.account = "mbecker20"
 image_registry.organization = "komodo"
@@ -33,7 +33,7 @@ links = [
 ]
 repo = "mbecker20/komodo"
 branch = "1.16.12"
-dockerfile_path = "binaries.Dockerfile"
+dockerfile_path = "bin/binaries.Dockerfile"
 image_registry.domain = "git.komo.do"
 image_registry.account = "mbecker20"
 image_registry.organization = "komodo"
