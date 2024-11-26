@@ -125,6 +125,19 @@ build_args = """
 
 ##
 
+[[repo]]
+name = "upload-binaries-dev"
+tags = ["dev", "binaries"]
+[repo.config]
+builder = "local"
+git_provider = "git.komo.do"
+repo = "komodo/build"
+on_clone.command = """
+bash ./upload-binaries.sh dev latest-dev [[KOMODO_DEV_VERSION]] [[KOMODO_GIT_TOKEN]]
+"""
+
+##
+
 [[procedure]]
 name = "build-dev"
 tags = ["dev"]
