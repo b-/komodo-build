@@ -15,8 +15,8 @@ AARCH64_IMAGE=git.komo.do/komodo/binaries:$TAG-aarch64
 docker pull $X86_64_IMAGE
 docker pull $AARCH64_IMAGE
 
-x86_64_id=$(docker create $X86_64_IMAGE)
-aarch64_id=$(docker create $AARCH64_IMAGE)
+x86_64_id=$(docker create $X86_64_IMAGE sh)
+aarch64_id=$(docker create $AARCH64_IMAGE sh)
 
 docker cp $x86_64_id:/periphery ./periphery-x86_64
 docker cp $aarch64_id:/periphery ./periphery-aarch64
