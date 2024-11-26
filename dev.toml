@@ -112,7 +112,7 @@ tags = ["dev"]
 name = "Build Binaries"
 enabled = true
 executions = [
-  { execution.type = "BatchRunBuild", execution.params.pattern = """, komodo-binaries-dev-*, """, enabled = true }
+  { execution.type = "BatchRunBuild", execution.params.pattern = "komodo-binaries-dev-*", enabled = true }
 ]
 
 ##
