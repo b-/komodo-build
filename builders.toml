@@ -17,6 +17,15 @@ curl -sSL https://raw.githubusercontent.com/mbecker20/komodo/main/scripts/setup-
 ##
 
 [[builder]]
+name = "local"
+tags = ["builder"]
+[builder.config]
+type = "Url"
+params.address = "https://3.132.55.195:8120"
+
+##
+
+[[builder]]
 name = "x86_64-builder"
 tags = ["builder"]
 [builder.config]
