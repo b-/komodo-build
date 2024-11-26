@@ -115,6 +115,13 @@ executions = [
   { execution.type = "BatchRunBuild", execution.params.pattern = "komodo-binaries-dev-*", enabled = true }
 ]
 
+[[procedure.config.stage]]
+name = "Build Multi Arch"
+enabled = true
+executions = [
+  { execution.type = "BatchRunBuild", execution.params.pattern = "komodo-*-dev", enabled = true }
+]
+
 ##
 
 [[resource_sync]]
