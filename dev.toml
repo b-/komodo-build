@@ -54,11 +54,13 @@ links = [
 ]
 repo = "mbecker20/komodo"
 branch = "1.16.12"
+pre_build.command = """
+docker buildx create --name builder --use --bootstrap
+"""
 dockerfile_path = "bin/core/multi-arch.Dockerfile"
 image_registry.domain = "git.komo.do"
 image_registry.account = "mbecker20"
 image_registry.organization = "komodo"
-pre_build.command = "docker buildx create --name builder --use --bootstrap"
 extra_args = [
   "--platform linux/amd64,linux/arm64",
   "--builder builder"
@@ -67,3 +69,48 @@ build_args = """
   REGISTRY_AND_NAMESPACE = git.komo.do/komodo
   BINARIES_TAG = latest-dev
 """
+
+##
+
+[[build]]
+name = "komodo-periphery-dev"
+tags = ["dev", "periphery"]
+[build.config]
+builder = "x86_64-builder"
+version = "1.16.12"
+auto_increment_version = false
+image_name = "periphery"
+image_tag = "dev"
+links = [
+  "https://git.komo.do/komodo/-/packages/container/core"
+]
+repo = "mbecker20/komodo"
+branch = "1.16.12"
+pre_build.command = """
+docker buildx create --name builder --use --bootstrap
+"""
+dockerfile_path = "bin/periphery/multi-arch.Dockerfile"
+image_registry.domain = "git.komo.do"
+image_registry.account = "mbecker20"
+image_registry.organization = "komodo"
+extra_args = [
+  "--platform linux/amd64,linux/arm64",
+  "--builder builder"
+]
+build_args = """
+  REGISTRY_AND_NAMESPACE = git.komo.do/komodo
+  BINARIES_TAG = latest-dev
+"""
+
+##
+
+[[resource_sync]]
+name = "dev"
+tags = ["dev"]
+[resource_sync.config]
+git_provider = "git.komo.do"
+repo = "komodo/build"
+git_account = "mbecker20"
+resource_path = ["dev.toml"]
+managed = true
+match_tags = ["dev"]
