@@ -15,6 +15,22 @@ image_registry.account = "mbecker20"
 ##
 
 [[build]]
+name = "binaries-x86_64"
+tags = ["release", "binaries", "x86_64"]
+[build.config]
+builder = "x86_64-builder"
+version = "1.16.12"
+auto_increment_version = false
+image_name = "komodo-binaries"
+image_tag = "x86_64"
+repo = "mbecker20/komodo"
+dockerfile_path = "bin/binaries.Dockerfile"
+image_registry.domain = "ghcr.io"
+image_registry.account = "mbecker20"
+
+##
+
+[[build]]
 name = "komodo-core-aarch64"
 tags = ["release", "core", "aarch64"]
 [build.config]
