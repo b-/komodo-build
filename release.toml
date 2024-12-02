@@ -31,21 +31,6 @@ image_registry.account = "mbecker20"
 ##
 
 [[build]]
-name = "komodo-frontend"
-tags = ["release", "frontend"]
-[build.config]
-builder = "x86_64-builder"
-version = "1.16.12"
-auto_increment_version = false
-image_name = "komodo-frontend"
-repo = "mbecker20/komodo"
-dockerfile_path = "frontend/Dockerfile"
-image_registry.domain = "ghcr.io"
-image_registry.account = "mbecker20"
-
-##
-
-[[build]]
 name = "komodo-core"
 tags = ["release", "core"]
 [build.config]
@@ -64,6 +49,21 @@ extra_args = [
   "--platform linux/amd64,linux/arm64",
   "--builder builder"
 ]
+
+##
+
+[[build]]
+name = "komodo-frontend"
+tags = ["release", "frontend"]
+[build.config]
+builder = "x86_64-builder"
+version = "1.16.12"
+auto_increment_version = false
+image_name = "komodo-frontend"
+repo = "mbecker20/komodo"
+dockerfile_path = "frontend/Dockerfile"
+image_registry.domain = "ghcr.io"
+image_registry.account = "mbecker20"
 
 ##
 
@@ -90,7 +90,7 @@ extra_args = [
 ##
 
 [[procedure]]
-name = "build_release"
+name = "build-release"
 tags = ["release"]
 
 [[procedure.config.stage]]
@@ -99,7 +99,7 @@ enabled = true
 executions = [
   { execution.type = "RunBuild", execution.params.build = "komodo-binaries-x86_64", enabled = true },
   { execution.type = "RunBuild", execution.params.build = "komodo-binaries-aarch64", enabled = true },
-  { execution.type = "RunBuild", execution.params.build = "komodo-frontend", enabled = true },
+  { execution.type = "RunBuild", execution.params.build = "komodo-frontend", enabled = true }
 ]
 
 [[procedure.config.stage]]
@@ -107,7 +107,7 @@ name = "Build Release Images + Publish Binaries"
 enabled = true
 executions = [
   { execution.type = "RunBuild", execution.params.build = "komodo-core", enabled = true },
-  { execution.type = "RunBuild", execution.params.build = "komodo-periphery", enabled = true },
+  { execution.type = "RunBuild", execution.params.build = "komodo-periphery", enabled = true }
 ]
 
 ##
