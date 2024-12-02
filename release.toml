@@ -120,7 +120,8 @@ name = "Build Release Images + Publish Binaries"
 enabled = true
 executions = [
   { execution.type = "RunBuild", execution.params.build = "komodo-core", enabled = true },
-  { execution.type = "RunBuild", execution.params.build = "komodo-periphery", enabled = true }
+  { execution.type = "RunBuild", execution.params.build = "komodo-periphery", enabled = true },
+  { execution.type = "BuildRepo", execution.params.repo = "upload-binaries", enabled = true }
 ]
 
 ##
