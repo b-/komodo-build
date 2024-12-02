@@ -89,6 +89,19 @@ extra_args = [
 
 ##
 
+[[repo]]
+name = "upload-binaries"
+tags = ["release", "binaries"]
+[repo.config]
+builder = "local"
+git_provider = "git.komo.do"
+repo = "komodo/build"
+on_clone.command = """
+bash ./upload-binaries.sh release latest [[KOMODO_VERSION]] [[KOMODO_GIT_TOKEN]]
+"""
+
+##
+
 [[procedure]]
 name = "build-release"
 tags = ["release"]
