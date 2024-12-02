@@ -66,8 +66,8 @@ extra_args = [
   "--builder builder"
 ]
 build_args = """
-  REGISTRY_AND_NAMESPACE = git.komo.do/komodo
-  IMAGE_TAG = latest-dev
+  BINARIES_IMAGE = git.komo.do/komodo/binaries:latest-dev
+  FRONTEND_IMAGE = git.komo.do/komodo/frontend:latest-dev
 """
 
 ##
@@ -119,8 +119,7 @@ extra_args = [
   "--builder builder"
 ]
 build_args = """
-  REGISTRY_AND_NAMESPACE = git.komo.do/komodo
-  IMAGE_TAG = latest-dev
+  BINARIES_IMAGE = git.komo.do/komodo/binaries:latest-dev
 """
 
 ##
