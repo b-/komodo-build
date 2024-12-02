@@ -97,17 +97,17 @@ tags = ["release"]
 name = "Build Binaries + Frontend"
 enabled = true
 executions = [
-  { execution.type = "RunBuild", execution.params.pattern = "komodo-binaries-x86_64", enabled = true },
-  { execution.type = "RunBuild", execution.params.pattern = "komodo-binaries-aarch64", enabled = true },
-  { execution.type = "RunBuild", execution.params.pattern = "komodo-frontend", enabled = true },
+  { execution.type = "RunBuild", execution.params.build = "komodo-binaries-x86_64", enabled = true },
+  { execution.type = "RunBuild", execution.params.build = "komodo-binaries-aarch64", enabled = true },
+  { execution.type = "RunBuild", execution.params.build = "komodo-frontend", enabled = true },
 ]
 
 [[procedure.config.stage]]
 name = "Build Release Images + Publish Binaries"
 enabled = true
 executions = [
-  { execution.type = "RunBuild", execution.params.pattern = "komodo-core", enabled = true },
-  { execution.type = "RunBuild", execution.params.pattern = "komodo-periphery", enabled = true },
+  { execution.type = "RunBuild", execution.params.build = "komodo-core", enabled = true },
+  { execution.type = "RunBuild", execution.params.build = "komodo-periphery", enabled = true },
 ]
 
 ##
