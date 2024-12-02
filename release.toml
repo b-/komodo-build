@@ -33,15 +33,18 @@ image_registry.account = "mbecker20"
 [[build]]
 name = "komodo-core"
 tags = ["release", "core"]
+description = """
+OPEN FOR INSTRUCTIONS
+
+Must run the following command to create the builder:
+'docker buildx create --name builder --use --bootstrap'
+"""
 [build.config]
 builder = "local"
 version = "1.16.12"
 auto_increment_version = false
 image_name = "komodo"
 repo = "mbecker20/komodo"
-pre_build.command = """
-docker buildx create --name builder --use --bootstrap
-"""
 dockerfile_path = "bin/core/multi-arch.Dockerfile"
 image_registry.domain = "ghcr.io"
 image_registry.account = "mbecker20"
@@ -70,15 +73,18 @@ image_registry.account = "mbecker20"
 [[build]]
 name = "komodo-periphery"
 tags = ["release", "periphery"]
+description = """
+OPEN FOR INSTRUCTIONS
+
+Must run the following command to create the builder:
+'docker buildx create --name builder --use --bootstrap'
+"""
 [build.config]
 builder = "local"
 version = "1.16.12"
 auto_increment_version = false
 image_name = "periphery"
 repo = "mbecker20/komodo"
-pre_build.command = """
-docker buildx create --name builder --use --bootstrap
-"""
 dockerfile_path = "bin/periphery/multi-arch.Dockerfile"
 image_registry.domain = "ghcr.io"
 image_registry.account = "mbecker20"
