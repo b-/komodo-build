@@ -32,13 +32,13 @@ image_registry.account = "mbecker20"
 
 [[build]]
 name = "komodo-core"
-tags = ["release", "core"]
 description = """
 OPEN FOR INSTRUCTIONS
 
-Must run the following command to create the builder:
+Must run the following command on host to create the builder:
 'docker buildx create --name builder --use --bootstrap'
 """
+tags = ["release", "core"]
 [build.config]
 builder = "local"
 version = "1.16.12"
@@ -72,13 +72,13 @@ image_registry.account = "mbecker20"
 
 [[build]]
 name = "komodo-periphery"
-tags = ["release", "periphery"]
 description = """
 OPEN FOR INSTRUCTIONS
 
 Must run the following command to create the builder:
 'docker buildx create --name builder --use --bootstrap'
 """
+tags = ["release", "periphery"]
 [build.config]
 builder = "local"
 version = "1.16.12"
