@@ -132,7 +132,7 @@ builder = "local"
 git_provider = "git.komo.do"
 repo = "komodo/build"
 on_clone.command = """
-bash ./upload-binaries.sh dev latest-dev [[KOMODO_DEV_VERSION]] [[KOMODO_GIT_TOKEN]]
+bash ./upload-binaries.sh dev git.komo.do/komodo/binaries:latest-dev [[KOMODO_DEV_VERSION]] [[KOMODO_GIT_TOKEN]]
 """
 
 ##
