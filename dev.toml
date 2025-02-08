@@ -3,19 +3,19 @@ name = "binaries-dev-aarch64"
 tags = ["dev", "binaries", "aarch64"]
 [build.config]
 builder = "aarch64-builder"
-version = "1.16.12"
+version = "1.17.0"
 auto_increment_version = false
 image_name = "binaries"
 image_tag = "dev-aarch64"
 links = [
-  "https://git.komo.do/komodo/-/packages/container/binaries"
+  "https://git.komo.do/moghtech/-/packages/container/binaries"
 ]
-repo = "mbecker20/komodo"
-branch = "1.16.12"
+repo = "moghtech/komodo"
+branch = "1.17.0"
 dockerfile_path = "bin/binaries.Dockerfile"
 image_registry.domain = "git.komo.do"
 image_registry.account = "mbecker20"
-image_registry.organization = "komodo"
+image_registry.organization = "moghtech"
 
 ##
 
@@ -24,19 +24,19 @@ name = "binaries-dev-x86_64"
 tags = ["dev", "binaries", "x86_64"]
 [build.config]
 builder = "x86_64-builder"
-version = "1.16.12"
+version = "1.17.0"
 auto_increment_version = false
 image_name = "binaries"
 image_tag = "dev-x86_64"
 links = [
-  "https://git.komo.do/komodo/-/packages/container/binaries"
+  "https://git.komo.do/moghtech/-/packages/container/binaries"
 ]
-repo = "mbecker20/komodo"
-branch = "1.16.12"
+repo = "moghtech/komodo"
+branch = "1.17.0"
 dockerfile_path = "bin/binaries.Dockerfile"
 image_registry.domain = "git.komo.do"
 image_registry.account = "mbecker20"
-image_registry.organization = "komodo"
+image_registry.organization = "moghtech"
 
 ##
 
@@ -45,29 +45,29 @@ name = "komodo-core-dev"
 tags = ["dev", "core"]
 [build.config]
 builder = "x86_64-builder"
-version = "1.16.12"
+version = "1.17.0"
 auto_increment_version = false
 image_name = "core"
 image_tag = "dev"
 links = [
-  "https://git.komo.do/komodo/-/packages/container/core"
+  "https://git.komo.do/moghtech/-/packages/container/core"
 ]
-repo = "mbecker20/komodo"
-branch = "1.16.12"
+repo = "moghtech/komodo"
+branch = "1.17.0"
 pre_build.command = """
 docker buildx create --name builder --use --bootstrap
 """
 dockerfile_path = "bin/core/multi-arch.Dockerfile"
 image_registry.domain = "git.komo.do"
 image_registry.account = "mbecker20"
-image_registry.organization = "komodo"
+image_registry.organization = "moghtech"
 extra_args = [
   "--platform linux/amd64,linux/arm64",
   "--builder builder"
 ]
 build_args = """
-  BINARIES_IMAGE = git.komo.do/komodo/binaries:latest-dev
-  FRONTEND_IMAGE = git.komo.do/komodo/frontend:latest-dev
+  BINARIES_IMAGE = git.komo.do/moghtech/binaries:latest-dev
+  FRONTEND_IMAGE = git.komo.do/moghtech/frontend:latest-dev
 """
 
 ##
@@ -77,19 +77,19 @@ name = "komodo-frontend-dev"
 tags = ["dev", "frontend"]
 [build.config]
 builder = "x86_64-builder"
-version = "1.16.12"
+version = "1.17.0"
 auto_increment_version = false
 image_name = "frontend"
 image_tag = "dev"
 links = [
-  "https://git.komo.do/komodo/-/packages/container/frontend"
+  "https://git.komo.do/moghtech/-/packages/container/frontend"
 ]
-repo = "mbecker20/komodo"
-branch = "1.16.12"
+repo = "moghtech/komodo"
+branch = "1.17.0"
 dockerfile_path = "frontend/Dockerfile"
 image_registry.domain = "git.komo.do"
 image_registry.account = "mbecker20"
-image_registry.organization = "komodo"
+image_registry.organization = "moghtech"
 
 ##
 
@@ -98,28 +98,28 @@ name = "komodo-periphery-dev"
 tags = ["dev", "periphery"]
 [build.config]
 builder = "x86_64-builder"
-version = "1.16.12"
+version = "1.17.0"
 auto_increment_version = false
 image_name = "periphery"
 image_tag = "dev"
 links = [
-  "https://git.komo.do/komodo/-/packages/container/core"
+  "https://git.komo.do/moghtech/-/packages/container/core"
 ]
-repo = "mbecker20/komodo"
-branch = "1.16.12"
+repo = "moghtech/komodo"
+branch = "1.17.0"
 pre_build.command = """
 docker buildx create --name builder --use --bootstrap
 """
 dockerfile_path = "bin/periphery/multi-arch.Dockerfile"
 image_registry.domain = "git.komo.do"
 image_registry.account = "mbecker20"
-image_registry.organization = "komodo"
+image_registry.organization = "moghtech"
 extra_args = [
   "--platform linux/amd64,linux/arm64",
   "--builder builder"
 ]
 build_args = """
-  BINARIES_IMAGE = git.komo.do/komodo/binaries:latest-dev
+  BINARIES_IMAGE = git.komo.do/moghtech/binaries:latest-dev
 """
 
 ##
@@ -132,7 +132,7 @@ builder = "local"
 git_provider = "git.komo.do"
 repo = "komodo/build"
 on_clone.command = """
-bash ./upload-binaries.sh dev git.komo.do/komodo/binaries:latest-dev [[KOMODO_DEV_VERSION]] [[KOMODO_GIT_TOKEN]]
+bash ./upload-binaries.sh dev git.komo.do/moghtech/binaries:latest-dev [[KOMODO_DEV_VERSION]] [[KOMODO_GIT_TOKEN]]
 """
 
 ##
