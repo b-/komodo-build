@@ -161,6 +161,27 @@ executions = [
 
 ##
 
+[[action]]
+name = "publish-dev"
+tags = ["dev"]
+[action.config]
+file_contents = """
+const VERSION = "1.17.0";
+
+const builds = await komodo.read("ListBuilds", { query: { tags: ["dev"] } });
+
+for (const build of builds) {
+  console.log(build.name);
+}
+
+// await komodo.write("UpdateVariableValue", {
+//   name: "KOMODO_DEV_VERSION",
+//   value: VERSION,
+// });
+"""
+
+##
+
 [[resource_sync]]
 name = "dev"
 tags = ["dev"]
