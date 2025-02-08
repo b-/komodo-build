@@ -13,7 +13,7 @@ links = [
 repo = "moghtech/komodo"
 branch = "1.17.0"
 dockerfile_path = "bin/binaries.Dockerfile"
-image_registry.domain = "git.komo.do"
+image_registry.domain = "ghcr.io"
 image_registry.account = "mbecker20"
 image_registry.organization = "moghtech"
 
@@ -34,7 +34,7 @@ links = [
 repo = "moghtech/komodo"
 branch = "1.17.0"
 dockerfile_path = "bin/binaries.Dockerfile"
-image_registry.domain = "git.komo.do"
+image_registry.domain = "ghcr.io"
 image_registry.account = "mbecker20"
 image_registry.organization = "moghtech"
 
@@ -58,7 +58,7 @@ pre_build.command = """
 docker buildx create --name builder --use --bootstrap
 """
 dockerfile_path = "bin/core/multi-arch.Dockerfile"
-image_registry.domain = "git.komo.do"
+image_registry.domain = "ghcr.io"
 image_registry.account = "mbecker20"
 image_registry.organization = "moghtech"
 extra_args = [
@@ -66,8 +66,8 @@ extra_args = [
   "--builder builder"
 ]
 build_args = """
-  BINARIES_IMAGE = git.komo.do/moghtech/binaries:latest-dev
-  FRONTEND_IMAGE = git.komo.do/moghtech/frontend:latest-dev
+  BINARIES_IMAGE = ghcr.io/moghtech/binaries:latest-dev
+  FRONTEND_IMAGE = ghcr.io/moghtech/frontend:latest-dev
 """
 
 ##
@@ -87,7 +87,7 @@ links = [
 repo = "moghtech/komodo"
 branch = "1.17.0"
 dockerfile_path = "frontend/Dockerfile"
-image_registry.domain = "git.komo.do"
+image_registry.domain = "ghcr.io"
 image_registry.account = "mbecker20"
 image_registry.organization = "moghtech"
 
@@ -111,7 +111,7 @@ pre_build.command = """
 docker buildx create --name builder --use --bootstrap
 """
 dockerfile_path = "bin/periphery/multi-arch.Dockerfile"
-image_registry.domain = "git.komo.do"
+image_registry.domain = "ghcr.io"
 image_registry.account = "mbecker20"
 image_registry.organization = "moghtech"
 extra_args = [
@@ -119,7 +119,7 @@ extra_args = [
   "--builder builder"
 ]
 build_args = """
-  BINARIES_IMAGE = git.komo.do/moghtech/binaries:latest-dev
+  BINARIES_IMAGE = ghcr.io/moghtech/binaries:latest-dev
 """
 
 ##
@@ -132,7 +132,7 @@ builder = "local"
 git_provider = "git.komo.do"
 repo = "moghtech/build"
 on_clone.command = """
-bash ./upload-binaries.sh dev git.komo.do/moghtech/binaries:latest-dev [[KOMODO_DEV_VERSION]] [[KOMODO_GIT_TOKEN]]
+bash ./upload-binaries.sh dev ghcr.io/moghtech/binaries:latest-dev [[KOMODO_DEV_VERSION]] [[KOMODO_GIT_TOKEN]]
 """
 
 ##
