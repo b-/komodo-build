@@ -167,17 +167,29 @@ tags = ["dev"]
 [action.config]
 file_contents = """
 const VERSION = "1.17.0";
+const BRANCH = "1.17.0";
+
+await komodo.write("UpdateVariableValue", {
+  name: "KOMODO_DEV_VERSION",
+  value: VERSION,
+});
+console.log("Updated KOMODO_DEV_VERSION to", VERSION);
 
 const builds = await komodo.read("ListBuilds", { query: { tags: ["dev"] } });
 
 for (const build of builds) {
-  console.log(build.name);
+  await komodo.write("UpdateBuild", {
+    id: build.id,
+    config: { version: VERSION as any, branch: BRANCH },
+  });
+  console.log("Updated", build.name);
 }
 
-// await komodo.write("UpdateVariableValue", {
-//   name: "KOMODO_DEV_VERSION",
-//   value: VERSION,
-// });
+await komodo.write("CommitSync", { sync: "dev" });
+console.log("Committed changes to 'dev' Sync");
+
+await komodo.execute("RunProcedure", { procedure: "build-dev" });
+console.log("Launched 'build-dev' Procedure");
 """
 
 ##
