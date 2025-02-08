@@ -166,21 +166,22 @@ name = "publish-dev"
 tags = ["dev"]
 [action.config]
 file_contents = """
-const VERSION = "1.17.0";
 const BRANCH = "1.17.0";
+const VERSION = "1.17.0";
+const TAG = "dev1";
 
 await komodo.write("UpdateVariableValue", {
   name: "KOMODO_DEV_VERSION",
-  value: VERSION,
+  value: VERSION + "-" + "TAG",
 });
-console.log("Updated KOMODO_DEV_VERSION to", VERSION);
+console.log("Updated KOMODO_DEV_VERSION to", VERSION + "-" + "TAG");
 
 const builds = await komodo.read("ListBuilds", { query: { tags: ["dev"] } });
 
 for (const build of builds) {
   await komodo.write("UpdateBuild", {
     id: build.id,
-    config: { version: VERSION as any, branch: BRANCH },
+    config: { version: VERSION as any, branch: BRANCH, image_tag: TAG },
   });
   console.log("Updated", build.name);
 }
