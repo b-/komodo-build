@@ -147,7 +147,7 @@ enabled = true
 executions = [
   { execution.type = "RunBuild", execution.params.build = "binaries-dev-x86_64", enabled = true },
   { execution.type = "RunBuild", execution.params.build = "binaries-dev-aarch64", enabled = true },
-  { execution.type = "RunBuild", execution.params.build = "komodo-frontend-dev", enabled = true },
+  { execution.type = "RunBuild", execution.params.build = "komodo-frontend-dev", enabled = true }
 ]
 
 [[procedure.config.stage]]
@@ -156,7 +156,7 @@ enabled = true
 executions = [
   { execution.type = "RunBuild", execution.params.build = "komodo-core-dev", enabled = true },
   { execution.type = "RunBuild", execution.params.build = "komodo-periphery-dev", enabled = true },
-  { execution.type = "BuildRepo", execution.params.repo = "upload-binaries-dev", enabled = true },
+  { execution.type = "BuildRepo", execution.params.repo = "upload-binaries-dev", enabled = true }
 ]
 
 ##
@@ -166,7 +166,7 @@ name = "dev"
 tags = ["dev"]
 [resource_sync.config]
 git_provider = "git.komo.do"
-repo = "komodo/build"
+repo = "moghtech/build"
 git_account = "mbecker20"
 resource_path = ["dev.toml"]
 managed = true
