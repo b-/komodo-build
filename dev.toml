@@ -145,8 +145,8 @@ tags = ["dev"]
 name = "Build Binaries + Frontend"
 enabled = true
 executions = [
-  { execution.type = "RunBuild", execution.params.build = "binaries-dev-x86_64", enabled = true },
-  { execution.type = "RunBuild", execution.params.build = "binaries-dev-aarch64", enabled = true },
+  { execution.type = "RunBuild", execution.params.build = "komodo-binaries-dev-x86_64", enabled = true },
+  { execution.type = "RunBuild", execution.params.build = "komodo-binaries-dev-aarch64", enabled = true },
   { execution.type = "RunBuild", execution.params.build = "komodo-frontend-dev", enabled = true }
 ]
 
