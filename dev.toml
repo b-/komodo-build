@@ -1,5 +1,5 @@
 [[build]]
-name = "binaries-dev-aarch64"
+name = "komodo-binaries-dev-aarch64"
 tags = ["dev", "binaries", "aarch64"]
 [build.config]
 builder = "aarch64-builder"
@@ -20,7 +20,7 @@ image_registry.organization = "moghtech"
 ##
 
 [[build]]
-name = "binaries-dev-x86_64"
+name = "komodo-binaries-dev-x86_64"
 tags = ["dev", "binaries", "x86_64"]
 [build.config]
 builder = "x86_64-builder"
