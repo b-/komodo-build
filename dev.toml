@@ -132,7 +132,7 @@ builder = "local"
 git_provider = "git.komo.do"
 repo = "moghtech/build"
 on_clone.command = """
-bash ./upload-binaries.sh dev ghcr.io/moghtech/binaries:latest-dev [[KOMODO_DEV_VERSION]] [[KOMODO_GIT_TOKEN]]
+bash ./upload-binaries.sh [[KOMODO_DEV_TAG]] ghcr.io/moghtech/binaries:latest-dev [[KOMODO_DEV_VERSION]] [[KOMODO_GIT_TOKEN]]
 """
 
 ##
@@ -172,16 +172,22 @@ const TAG = "dev1";
 
 await komodo.write("UpdateVariableValue", {
   name: "KOMODO_DEV_VERSION",
-  value: VERSION + "-" + "TAG",
+  value: VERSION,
 });
-console.log("Updated KOMODO_DEV_VERSION to", VERSION + "-" + "TAG");
+console.log("Updated KOMODO_DEV_VERSION to", VERSION);
+
+await komodo.write("UpdateVariableValue", {
+  name: "KOMODO_DEV_TAG",
+  value: TAG,
+});
+console.log("Updated KOMODO_DEV_TAG to", TAG);
 
 const builds = await komodo.read("ListBuilds", { query: { tags: ["dev"] } });
 
 for (const build of builds) {
   await komodo.write("UpdateBuild", {
     id: build.id,
-    config: { version: VERSION as any, branch: BRANCH, image_tag: TAG },
+    config: { version: VERSION as any, branch: BRANCH },
   });
   console.log("Updated", build.name);
 }
