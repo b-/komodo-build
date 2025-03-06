@@ -162,7 +162,7 @@ tags = ["dev"]
 file_contents = """
 const BRANCH = "1.17.0";
 const VERSION = "1.17.0";
-const TAG = "dev-4";
+const TAG = "dev-5";
 
 await komodo.write("UpdateVariableValue", {
   name: "KOMODO_DEV_VERSION",
