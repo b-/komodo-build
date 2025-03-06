@@ -15,7 +15,7 @@ branch = "1.17.0"
 dockerfile_path = "bin/binaries.Dockerfile"
 image_registry.domain = "ghcr.io"
 image_registry.account = "mbecker20"
-image_registry.organization = "moghtech"
+image_registry.organization = "moghtec"
 
 ##
 
