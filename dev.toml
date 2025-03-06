@@ -44,7 +44,7 @@ image_registry.organization = "moghtech"
 name = "komodo-core-dev"
 tags = ["dev", "core"]
 [build.config]
-builder = "x86_64-builder"
+builder = "local"
 version = "1.17.0"
 auto_increment_version = false
 image_name = "komodo"
@@ -54,9 +54,6 @@ links = [
 ]
 repo = "moghtech/komodo"
 branch = "1.17.0"
-pre_build.command = """
-docker buildx create --name builder --use --bootstrap
-"""
 dockerfile_path = "bin/core/multi-arch.Dockerfile"
 image_registry.domain = "ghcr.io"
 image_registry.account = "mbecker20"
@@ -76,7 +73,7 @@ build_args = """
 name = "komodo-frontend-dev"
 tags = ["dev", "frontend"]
 [build.config]
-builder = "x86_64-builder"
+builder = "local"
 version = "1.17.0"
 auto_increment_version = false
 image_name = "frontend"
@@ -97,7 +94,7 @@ image_registry.organization = "moghtech"
 name = "komodo-periphery-dev"
 tags = ["dev", "periphery"]
 [build.config]
-builder = "x86_64-builder"
+builder = "local"
 version = "1.17.0"
 auto_increment_version = false
 image_name = "periphery"
@@ -107,9 +104,6 @@ links = [
 ]
 repo = "moghtech/komodo"
 branch = "1.17.0"
-pre_build.command = """
-docker buildx create --name builder --use --bootstrap
-"""
 dockerfile_path = "bin/periphery/multi-arch.Dockerfile"
 image_registry.domain = "ghcr.io"
 image_registry.account = "mbecker20"
@@ -168,7 +162,7 @@ tags = ["dev"]
 file_contents = """
 const BRANCH = "1.17.0";
 const VERSION = "1.17.0";
-const TAG = "dev-3";
+const TAG = "dev-4";
 
 await komodo.write("UpdateVariableValue", {
   name: "KOMODO_DEV_VERSION",
