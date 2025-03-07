@@ -126,7 +126,11 @@ builder = "local"
 git_provider = "git.komo.do"
 repo = "moghtech/build"
 on_clone.command = """
-bash ./upload-binaries.sh [[KOMODO_DEV_TAG]] ghcr.io/moghtech/binaries:latest-dev [[KOMODO_DEV_VERSION]] [[KOMODO_GIT_TOKEN]]
+bash ./upload-binaries.sh \
+  [[KOMODO_DEV_TAG]] \
+  ghcr.io/moghtech/binaries:latest-dev \
+  [[KOMODO_DEV_VERSION]] \
+  [[KOMODO_GIT_TOKEN]]
 """
 
 ##
