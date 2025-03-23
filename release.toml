@@ -3,14 +3,15 @@ name = "komodo-binaries-aarch64"
 tags = ["release", "binaries", "aarch64"]
 [build.config]
 builder = "aarch64-builder"
-version = "1.16.12"
+version = "1.17.0"
 auto_increment_version = false
 image_name = "komodo-binaries"
 image_tag = "aarch64"
-repo = "mbecker20/komodo"
+repo = "moghtech/komodo"
 dockerfile_path = "bin/binaries.Dockerfile"
 image_registry.domain = "ghcr.io"
 image_registry.account = "mbecker20"
+image_registry.organization = "moghtech"
 
 ##
 
@@ -19,14 +20,15 @@ name = "komodo-binaries-x86_64"
 tags = ["release", "binaries", "x86_64"]
 [build.config]
 builder = "x86_64-builder"
-version = "1.16.12"
+version = "1.17.0"
 auto_increment_version = false
 image_name = "komodo-binaries"
 image_tag = "x86_64"
-repo = "mbecker20/komodo"
+repo = "moghtech/komodo"
 dockerfile_path = "bin/binaries.Dockerfile"
 image_registry.domain = "ghcr.io"
 image_registry.account = "mbecker20"
+image_registry.organization = "moghtech"
 
 ##
 
@@ -41,13 +43,14 @@ Must run the following command on host to create the builder:
 tags = ["release", "core"]
 [build.config]
 builder = "local"
-version = "1.16.12"
+version = "1.17.0"
 auto_increment_version = false
 image_name = "komodo"
-repo = "mbecker20/komodo"
+repo = "moghtech/komodo"
 dockerfile_path = "bin/core/multi-arch.Dockerfile"
 image_registry.domain = "ghcr.io"
 image_registry.account = "mbecker20"
+image_registry.organization = "moghtech"
 extra_args = [
   "--platform linux/amd64,linux/arm64",
   "--builder builder"
@@ -60,13 +63,13 @@ name = "komodo-frontend"
 tags = ["release", "frontend"]
 [build.config]
 builder = "x86_64-builder"
-version = "1.16.12"
+version = "1.17.0"
 auto_increment_version = false
-image_name = "komodo-frontend"
-repo = "mbecker20/komodo"
+repo = "moghtech/komodo"
 dockerfile_path = "frontend/Dockerfile"
 image_registry.domain = "ghcr.io"
 image_registry.account = "mbecker20"
+image_registry.organization = "moghtech"
 
 ##
 
@@ -81,13 +84,13 @@ Must run the following command to create the builder:
 tags = ["release", "periphery"]
 [build.config]
 builder = "local"
-version = "1.16.12"
+version = "1.17.0"
 auto_increment_version = false
-image_name = "periphery"
-repo = "mbecker20/komodo"
+repo = "moghtech/komodo"
 dockerfile_path = "bin/periphery/multi-arch.Dockerfile"
 image_registry.domain = "ghcr.io"
 image_registry.account = "mbecker20"
+image_registry.organization = "moghtech"
 extra_args = [
   "--platform linux/amd64,linux/arm64",
   "--builder builder"
@@ -101,12 +104,12 @@ tags = ["release", "binaries"]
 [repo.config]
 builder = "local"
 git_provider = "git.komo.do"
-repo = "komodo/build"
+repo = "moghtech/build"
 on_clone.command = """
 bash ./upload-binaries.sh \
-  release \
-  ghcr.io/mbecker20/komodo-binaries:latest \
-  [[KOMODO_VERSION]] \
+  [[KOMODO_RELEASE_TAG]] \
+  ghcr.io/moghtech/komodo-binaries:latest \
+  [[KOMODO_RELEASE_VERSION]] \
   [[KOMODO_GIT_TOKEN]]
 """
 
