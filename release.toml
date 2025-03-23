@@ -140,7 +140,7 @@ executions = [
 ##
 
 [[action]]
-name = "publish_release"
+name = "publish-release"
 tags = ["release"]
 [action.config]
 file_contents = """
