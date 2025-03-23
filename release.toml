@@ -45,7 +45,6 @@ tags = ["release", "core"]
 builder = "local"
 version = "1.17.0"
 auto_increment_version = false
-image_name = "komodo"
 repo = "moghtech/komodo"
 dockerfile_path = "bin/core/multi-arch.Dockerfile"
 image_registry.domain = "ghcr.io"

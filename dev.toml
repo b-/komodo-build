@@ -47,7 +47,7 @@ tags = ["dev", "core"]
 builder = "local"
 version = "1.17.0"
 auto_increment_version = false
-image_name = "komodo"
+image_name = "komodo-core"
 image_tag = "dev"
 links = [
   "https://github.com/moghtech/komodo/pkgs/container/komodo"
