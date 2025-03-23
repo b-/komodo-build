@@ -143,51 +143,37 @@ name = "publish-release"
 tags = ["release"]
 [action.config]
 file_contents = """
-const KOMODO_VERSION = "1.16.11";
-const APPS = ["core", "periphery"];
-const ARCHS = ["x86", "aarch64"];
+const BRANCH = "1.17.0";
+const VERSION = "1.17.0";
+const TAG = "release-1";
 
-const last_version = (
-  await komodo.read("GetVariable", { name: "KOMODO_VERSION" })
-).value;
-
-// Update Variable
 await komodo.write("UpdateVariableValue", {
-  name: "KOMODO_VERSION",
-  value: KOMODO_VERSION,
+  name: "KOMODO_RELEASE_VERSION",
+  value: VERSION,
 });
-console.log("Updated KOMODO_VERSION to " + KOMODO_VERSION);
+console.log("Updated KOMODO_RELEASE_VERSION to", VERSION);
 
-// Update Builds
-for (const app of APPS) {
-  for (const arch of ARCHS) {
-    const name = `komodo-${app}-${arch}`;
-    await komodo.write("UpdateBuild", {
-      id: name,
-      config: {
-        version: KOMODO_VERSION as any,
-      },
-    });
-    console.log(`Updated Build ${name} to ${KOMODO_VERSION}`);
-  }
+await komodo.write("UpdateVariableValue", {
+  name: "KOMODO_RELEASE_TAG",
+  value: TAG,
+});
+console.log("Updated KOMODO_RELEASE_TAG to", TAG);
+
+const builds = await komodo.read("ListBuilds", { query: { tags: ["release"] } });
+
+for (const build of builds) {
+  await komodo.write("UpdateBuild", {
+    id: build.id,
+    config: { version: VERSION as any, branch: BRANCH },
+  });
+  console.log("Updated", build.name);
 }
 
-// Update 'release' Sync references
-const sync = await komodo.read("GetResourceSync", { sync: "release" });
-const file = sync.info?.remote_contents?.find(
-  (file) => file.path === "release.toml",
-);
-await komodo.write("WriteSyncFileContents", {
-  sync: "release",
-  resource_path: file.resource_path,
-  file_path: file.path,
-  contents: file.contents.replaceAll(last_version, KOMODO_VERSION),
-});
-console.log(`Updated Sync references to ${KOMODO_VERSION}`);
+await komodo.write("CommitSync", { sync: "release" });
+console.log("Committed changes to 'release' Sync");
 
-// Start the procedure run.
-await komodo.execute("RunProcedure", { procedure: "build_release" });
-console.log("Publish Procedure triggered ✅");
+await komodo.execute("RunProcedure", { procedure: "build-release" });
+console.log("Launched 'build-release' Procedure");
 """
 
 ##
