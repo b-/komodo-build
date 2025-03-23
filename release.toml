@@ -143,7 +143,7 @@ name = "publish-release"
 tags = ["release"]
 [action.config]
 file_contents = """
-const BRANCH = "1.17.0";
+const BRANCH = "main";
 const VERSION = "1.17.0";
 const TAG = "release-1";
 
