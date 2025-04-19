@@ -3,7 +3,7 @@ name = "komodo-binaries-aarch64"
 tags = ["release", "binaries", "aarch64"]
 [build.config]
 builder = "aarch64-builder"
-version = "1.17.1"
+version = "1.17.2"
 auto_increment_version = false
 image_name = "komodo-binaries"
 image_tag = "aarch64"
@@ -20,7 +20,7 @@ name = "komodo-binaries-x86_64"
 tags = ["release", "binaries", "x86_64"]
 [build.config]
 builder = "x86_64-builder"
-version = "1.17.1"
+version = "1.17.2"
 auto_increment_version = false
 image_name = "komodo-binaries"
 image_tag = "x86_64"
@@ -43,7 +43,7 @@ Must run the following command on host to create the builder:
 tags = ["release", "core"]
 [build.config]
 builder = "local"
-version = "1.17.1"
+version = "1.17.2"
 auto_increment_version = false
 repo = "moghtech/komodo"
 dockerfile_path = "bin/core/multi-arch.Dockerfile"
@@ -62,7 +62,7 @@ name = "komodo-frontend"
 tags = ["release", "frontend"]
 [build.config]
 builder = "x86_64-builder"
-version = "1.17.1"
+version = "1.17.2"
 auto_increment_version = false
 repo = "moghtech/komodo"
 dockerfile_path = "frontend/Dockerfile"
@@ -83,7 +83,7 @@ Must run the following command to create the builder:
 tags = ["release", "periphery"]
 [build.config]
 builder = "local"
-version = "1.17.1"
+version = "1.17.2"
 auto_increment_version = false
 repo = "moghtech/komodo"
 dockerfile_path = "bin/periphery/multi-arch.Dockerfile"
@@ -144,7 +144,7 @@ tags = ["release"]
 [action.config]
 file_contents = """
 const BRANCH = "main";
-const VERSION = "1.17.1";
+const VERSION = "1.17.2";
 const TAG = "release-1";
 
 await komodo.write("UpdateVariableValue", {
