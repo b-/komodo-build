@@ -24,11 +24,11 @@ version = "1.17.5"
 auto_increment_version = false
 image_name = "komodo-binaries"
 image_tag = "x86_64"
-repo = "moghtech/komodo"
+repo = "b-/komodo"
 dockerfile_path = "bin/binaries.Dockerfile"
 image_registry.domain = "ghcr.io"
-image_registry.account = "mbecker20"
-image_registry.organization = "moghtech"
+image_registry.account = "b-"
+image_registry.organization = "briorg"
 
 ##
 
